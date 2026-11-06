@@ -1,0 +1,237 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+/* Основной каркас: колонка на весь экран */
+.app-shell {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100dvh;
+  height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+/* Верхняя панель */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  flex-shrink: 0;
+}
+
+/* Панель онлайн */
+.online-panel {
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  padding: 0.4rem 0.5rem 0.55rem;
+  flex-shrink: 0;
+}
+
+.online-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 0.35rem 0.25rem;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.15rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.users-list::-webkit-scrollbar {
+  height: 4px;
+}
+.users-list::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 2px;
+}
+
+/* Карточка пользователя (горизонтальная лента) */
+.user-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 4.5rem;
+  max-width: 5.5rem;
+  padding: 0.4rem 0.35rem;
+  border-radius: 0.75rem;
+  background: #0f172a;
+  flex-shrink: 0;
+}
+
+.user-item.me {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.user-item .user-name {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.call-btns {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.call-btns button {
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  padding: 0.2rem 0.35rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* Сообщения */
+.messages-area {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.75rem;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.messages-area::-webkit-scrollbar {
+  width: 5px;
+}
+.messages-area::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+.message {
+  max-width: 90%;
+  margin-bottom: 0.65rem;
+  animation: fadeIn 0.2s ease;
+}
+.message.mine {
+  margin-left: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.file-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 260px;
+}
+.file-card a {
+  color: #22d3ee;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+  font-size: 0.875rem;
+}
+
+.system-msg {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  padding: 0.25rem 0;
+  margin-bottom: 0.35rem;
+}
+
+/* Поле ввода */
+.input-bar {
+  background: #1e293b;
+  border-top: 1px solid #334155;
+  padding: 0.55rem 0.65rem;
+  padding-bottom: max(0.55rem, env(safe-area-inset-bottom));
+  flex-shrink: 0;
+}
+
+.safe-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Десктоп: боковая колонка для онлайн */
+@media (min-width: 768px) {
+  .app-shell {
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .top-bar {
+    grid-column: 1 / -1;
+  }
+
+  .online-panel {
+    grid-row: 2 / 4;
+    grid-column: 1;
+    border-bottom: none;
+    border-right: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 0.5rem;
+    overflow: hidden;
+  }
+
+  .users-list {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex: 1;
+    gap: 0.35rem;
+  }
+
+  .user-item {
+    flex-direction: row;
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .user-item .user-name {
+    flex: 1;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .messages-area {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .input-bar {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .message {
+    max-width: 70%;
+  }
+}
