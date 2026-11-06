@@ -1,0 +1,72 @@
+#messages::-webkit-scrollbar,
+#users-list::-webkit-scrollbar {
+  width: 5px;
+}
+#messages::-webkit-scrollbar-thumb,
+#users-list::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+.message {
+  max-width: 85%;
+  animation: fadeIn 0.2s ease;
+}
+@media (min-width: 768px) {
+  .message { max-width: 70%; }
+}
+.message.mine {
+  margin-left: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.user-item {
+  transition: background 0.15s;
+}
+.user-item:hover {
+  background: #334155;
+}
+.user-item.me {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.call-btns {
+  opacity: 1;
+  flex-shrink: 0;
+}
+.call-btns button {
+  min-width: 2rem;
+  min-height: 2rem;
+}
+
+.file-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 280px;
+}
+.file-card a {
+  color: #22d3ee;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+}
+.file-card a:hover {
+  text-decoration: underline;
+}
+
+.system-msg {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  padding: 4px 0;
+}
